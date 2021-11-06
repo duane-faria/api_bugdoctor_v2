@@ -8,10 +8,16 @@ class User extends Model {
       {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
-        teamId: Sequelize.NUMBER,
+        team_id: Sequelize.NUMBER,
         password: Sequelize.STRING,
+        created_at: Sequelize.DATE,
+        updated_at: Sequelize.DATE,
+        deleted_at: Sequelize.DATE,
       },
-      { sequelize }
+      {
+        sequelize,
+        tableName: 'users',
+      }
     );
 
     this.addHook('beforeSave', async (user) => {

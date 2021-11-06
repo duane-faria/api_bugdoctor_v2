@@ -1,16 +1,20 @@
-const User = require('../model/User');
+const userService = require('../service/User');
 
 class UserController {
   async index(req, res) {
-    const users = await User.findAll({
-      attributes: ['name', 'email',],
-    });
-    return res.json(users);
+    const user = await userService.findUsersByTeam(req.params.team_id);
+    return res.json({ status: 200, data: user });
   }
 
   async store(req, res) {
-    const user = await User.create(req.body);
-    return res.json(user);
+    const user = await userService.create(req.body);
+    return res.json({ status: 200, data: user });
+  }
+
+  async validateEmail(req, res) {
+    const REGISTERING = false;
+    const valid = await userService.validateEmail(req.params.email, REGISTERING);
+    return res.json({ status: 200, data: { valid } });
   }
 }
 

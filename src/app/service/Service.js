@@ -1,25 +1,23 @@
-module.exports = class Repository {
+module.exports = class Service {
+
   constructor(repository) {
     this.repository = repository;
-  }
-
-  findOne(where) {
-    return this.repository.findOne({
-      where
-    })
   }
 
   create(data) {
     return this.repository.create(data);
   }
 
+  findOne(config) {
+    return this.repository.findOne(config)
+  }
+
   findAll(config) {
     return this.repository.findAll(config);
   }
 
-  delete(params) {
-    return this.repository.destroy(params);
+  delete(id) {
+    return this.repository.delete({ where: { id } });
   }
+
 }
-
-

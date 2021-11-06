@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      responsibleId: {
+      responsible_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -21,7 +21,7 @@ module.exports = {
           key: 'id',
         },
       },
-      reporterId: {
+      reporter_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

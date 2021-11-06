@@ -7,15 +7,16 @@ routes.post('/user', controllers.UserController.store);
 routes.post('/session', controllers.SessionController.store);
 routes.get('/team/validate/code/:code', controllers.TeamController.validateCode);
 routes.post('/team', controllers.TeamController.store);
+routes.get('/user/validate/email/:email', controllers.UserController.validateEmail);
+
 routes.use(AuthMiddleware);
 
+routes.get('/bugs/:team_id', controllers.BugController.index);
+routes.post('/bug', controllers.BugController.store);
+routes.get('/users/:team_id', controllers.UserController.index);
+routes.get('/team/:id', controllers.TeamController.show);
+routes.delete('/bug/:id', controllers.BugController.delete);
+
 // routes.get('/user', controllers.UserController.index);
-
-// routes.put('/projects', controllers.ProjectController.update);
-// routes.delete('/projects/:id', controllers.ProjectController.delete);
-// routes.post('/technologies', controllers.TechnologiesController.store);
-// routes.put('/technologies', controllers.TechnologiesController.update);
-// routes.delete('/technologies/:id', controllers.TechnologiesController.delete);
-
 
 module.exports = routes;

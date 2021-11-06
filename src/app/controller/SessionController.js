@@ -1,36 +1,12 @@
-const jwt = require('jsonwebtoken');
-const authConfig = require('../../config/auth');
-const models = require('../model');
+const userService = require('../service/User');
 
 class SessionController {
   async store(req, res) {
-    const { email, password } = req.body;
-    const user = await models.User.findOne({
-      where: {
-        email,
-      },
-    });
-
-    if (!user) {
-      return res.status(401).json({ error: 'E-mail not found' });
-    }
-
-    if (!(await user.checkPassword(password))) {
-      return res.status(401).json({ error: 'The password is wrong' });
-    }
-    const { id, name } = user;
-
-    const token = jwt.sign({ id }, authConfig.secret, {
-      expiresIn: authConfig.expiresIn,
-    });
+    const data = await userService.login(req.body);
 
     return res.json({
-      user: {
-        id,
-        name,
-        email,
-        token,
-      },
+      status: 200,
+      data
     });
   }
 }

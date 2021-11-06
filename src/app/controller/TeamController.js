@@ -3,13 +3,11 @@ const teamService = require('../service/Team');
 class TeamController {
 
   async validateCode(req, res) {
-    const isValid = await teamService.isCodeValid(req.params.code);
+    const data = await teamService.isCodeValid(req.params.code);
 
     return res.json({
       status: 200,
-      data: {
-        isCodeValid: isValid
-      }
+      data
     })
   }
 
@@ -18,6 +16,15 @@ class TeamController {
       attributes: ['name', 'email',],
     });
     return res.json(users);
+  }
+
+  async show(req, res) {
+    const { id } = req.params;
+    const data = await teamService.findOne(id);
+    return res.json({
+      status: 200,
+      data
+    });
   }
 
   async store(req, res) {

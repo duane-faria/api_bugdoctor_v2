@@ -1,10 +1,20 @@
 const teamRepository = require('../repository/Team');
 const crypto = require("crypto");
+const { get } = require('lodash');
 class TeamService {
   async isCodeValid(code) {
-    return !!(await teamRepository.findOne({
+    const team = await teamRepository.findOne({
       code
-    }));
+    });
+
+    return {
+      isCodeValid: get(team, 'id') ? true : false,
+      teamId: get(team, 'id', null)
+    }
+  }
+
+  findOne(id) {
+    return teamRepository.findOne({ id });
   }
 
   async create(team) {
