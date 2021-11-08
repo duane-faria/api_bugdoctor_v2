@@ -16,7 +16,6 @@ routes.post('/bug', controllers.BugController.store);
 routes.get('/users/:team_id', controllers.UserController.index);
 routes.get('/team/:id', controllers.TeamController.show);
 routes.delete('/bug/:id', controllers.BugController.delete);
-
-// routes.get('/user', controllers.UserController.index);
+routes.get('/projects/:team_id', controllers.ProjectController.index);
 
 module.exports = routes;

@@ -6,6 +6,24 @@ class BugRepository extends Repository {
     super(models.Bug)
   }
 
+  getBugsByProject(project_id) {
+    return this.findAll({
+      where: {
+        project_id
+      },
+      include: [{
+        model: models.User,
+        as: 'reporter',
+        attributes: ['id', 'name']
+      }, {
+        model: models.User,
+        as: 'responsible',
+        attributes: ['id', 'name']
+      },
+      ],
+    })
+  }
+
   getBugsByTeam(team_id) {
     return this.findAll({
       include: [{

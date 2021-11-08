@@ -3,7 +3,7 @@ const bugService = require('../service/Bug');
 class BugController {
   async index(req, res) {
     const { team_id } = req.params;
-    const data = await bugService.getBugsByTeam(team_id);
+    const data = await bugService.getBugsByProject(team_id);
     return res.json({ code: 200, data })
   }
 
