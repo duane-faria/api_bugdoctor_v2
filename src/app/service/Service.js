@@ -8,6 +8,10 @@ module.exports = class Service {
     return this.repository.create(data);
   }
 
+  update(data) {
+    return this.repository.update(data);
+  }
+
   findOne(config) {
     return this.repository.findOne(config)
   }

@@ -31,6 +31,14 @@ class Bug extends Model {
             key: 'id',
           },
         },
+        project_id: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'projects',
+            key: 'id',
+          },
+        },
         enviroment: {
           type: Sequelize.ENUM('DEV', 'HOMOLOG', 'PROD'),
           allowNull: false,

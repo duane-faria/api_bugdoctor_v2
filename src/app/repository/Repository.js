@@ -3,14 +3,24 @@ module.exports = class Repository {
     this.repository = repository;
   }
 
-  findOne(where) {
-    return this.repository.findOne({
-      where
-    })
+  findOne(obj) {
+    let params = {};
+    if (!obj.where) {
+      params = {
+        where: { ...obj }
+      }
+    } else {
+      params = obj;
+    }
+    return this.repository.findOne(params);
   }
 
   create(data) {
     return this.repository.create(data);
+  }
+
+  update(data) {
+    return this.repository.update(data, { where: { id: data.id } });
   }
 
   findAll(config) {

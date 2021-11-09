@@ -13,6 +13,9 @@ routes.use(AuthMiddleware);
 
 routes.get('/bugs/:team_id', controllers.BugController.index);
 routes.post('/bug', controllers.BugController.store);
+routes.put('/bug', controllers.BugController.update);
+routes.get('/bug/:id', controllers.BugController.show);
+routes.post('/project', controllers.ProjectController.store);
 routes.get('/users/:team_id', controllers.UserController.index);
 routes.get('/team/:id', controllers.TeamController.show);
 routes.delete('/bug/:id', controllers.BugController.delete);

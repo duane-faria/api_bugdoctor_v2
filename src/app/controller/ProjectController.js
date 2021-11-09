@@ -9,5 +9,14 @@ class ProjectController {
       data
     });
   }
+
+  async store(req, res) {
+    const data = await projectService.create(req.body);
+
+    return res.json({
+      status: 200,
+      data
+    });
+  }
 }
 module.exports = new ProjectController();
